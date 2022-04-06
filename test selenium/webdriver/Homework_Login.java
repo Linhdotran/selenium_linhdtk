@@ -73,11 +73,16 @@ public class Homework_Login {
 		driver.findElement(By.xpath("//input[@id='firstname']")).sendKeys("Linh");
 		driver.findElement(By.xpath("//input[@id='middlename']")).sendKeys("Tran");
 		driver.findElement(By.xpath("//input[@id='lastname']")).sendKeys("Do");
-		driver.findElement(By.xpath("//input[@id='email_address']")).sendKeys("khanhlinh@gmail.com");
+		driver.findElement(By.xpath("//input[@id='email_address']")).sendKeys("khanhlinh02@gmail.com");
 		driver.findElement(By.xpath("//input[@id='password']")).sendKeys("123456");
 		driver.findElement(By.xpath("//input[@id='confirmation']")).sendKeys("123456");
 		driver.findElement(By.xpath("//button[@title='Register']")).click();
 		Assert.assertTrue(driver.findElement(By.xpath("//li[@class='success-msg']//span")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.xpath("//div[@class='dashboard']//h1")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.xpath("//div[@class='welcome-msg']//strong")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.xpath("//div[@class='col-1']//div[@class='box-content']/p")).isDisplayed());
+		driver.findElement(By.xpath("//a[@class ='skip-link skip-account']//span[@class='label']")).click();
+		driver.findElement(By.xpath("//a[@title='Log Out']")).click();
 	}
 	
 	@AfterTest
