@@ -46,7 +46,7 @@ public class Test_Alada_Homework {
 		driver.manage().window().maximize();
 		
 		name = "Khanh Linh";
-		emailAddress = "khanhlinh@gmail.com";
+		emailAddress = "khanhlinh01@gmail.com";
 		password = "123456";
 		phone = "0936554223";
 	
