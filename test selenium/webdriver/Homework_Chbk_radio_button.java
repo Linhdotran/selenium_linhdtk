@@ -47,7 +47,7 @@ public class Homework_Chbk_radio_button {
 		jsExecutor = (JavascriptExecutor) driver;
 	}
 
-	//@Test
+	@Test
 	public void TC_01_JavascriptExecutor() {
 
 		driver.get("https://www.fahasa.com/customer/account/create");
