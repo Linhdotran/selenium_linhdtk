@@ -10,7 +10,9 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Sleeper;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
@@ -62,7 +64,7 @@ public class Homework_dropdownlist_02 {
 		
 	}
 	
-	@Test
+	//@Test
 	public void TC_02_ReactJS() {
 		driver.get("https://react.semantic-ui.com/maximize/dropdown-example-selection/");
 		By parent = By.xpath("//div[@role ='listbox']");
@@ -81,6 +83,21 @@ public class Homework_dropdownlist_02 {
 		Assert.assertTrue(isElementDisplayed(By.xpath("//div[@role ='alert' and text() = 'Justen Kitsune']")));
 	}
 	
+	
+	@Test
+	public void TC_03_Telerik() {
+		driver.get("https://demos.telerik.com/kendo-ui/dropdownlist/index");
+		
+		//Chon Catergory
+		selectItemInDropDown(By.xpath("//span[@aria-controls='categories_listbox']"), By.xpath("//span[@class='k-state-default']/h3"), "Grains/Cereals");
+		sleepInSecond(3);
+		
+		//Chon product
+		//Cho cho den khi cai icon loading trong dropdown bien mat trong vong 15s
+				//Assert.assertTrue(explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//span[text() = 'Select category...']"))));
+		
+
+	}
 	
 	@AfterTest
 	public void afterTest() {
@@ -105,6 +122,10 @@ public class Homework_dropdownlist_02 {
 	}
 	
 	public void selectItemInDropDown(By parentBy, By childBy, String expectedTextItem) {
+		
+		//Cho cho element dc phep click
+		explicitWait.until(ExpectedConditions.elementToBeClickable(parentBy));
+		
 		//1 - Click vao 1 element cho nó show hết ra
 				driver.findElement(parentBy).click();
 				
