@@ -53,16 +53,16 @@ public class Homework_Chbk_radio_button {
 		driver.get("https://www.fahasa.com/customer/account/create");
 		driver.findElement(By.cssSelector("li.popup-login-tab-login")).click();
 
-		// Verify login button isDisable
+		//Verify login button isDisable
 		Assert.assertTrue(driver.findElement(loginButton).isDisplayed());
 
-		// Nhap du lieu
+		//Nhap du lieu
 
 		driver.findElement(loginUserName).sendKeys(UserName);
 		driver.findElement(loginPassword).sendKeys(UserPassword);
 		sleepInSecond(1);
 
-		// Verify login button isEnable
+		//Verify login button isEnable
 		Assert.assertTrue(driver.findElement(loginButton).isEnabled());
 		
 		//Verify login button with background color
@@ -71,7 +71,7 @@ public class Homework_Chbk_radio_button {
 		String hexColor = Color.fromString(redcolor).asHex();
 		Assert.assertEquals(hexColor, "#c92127");
 
-		// Refresh lai trang
+		//Refresh lai trang
 		driver.navigate().refresh();
 
 		driver.findElement(By.cssSelector("li.popup-login-tab-login")).click();
@@ -87,10 +87,9 @@ public class Homework_Chbk_radio_button {
 		
 		Assert.assertEquals(driver.findElement(By.cssSelector("div[class='fhs-input-box fhs-input-display checked-error'] div[class='fhs-input-alert']")).getText(), "Thông tin này không thể để trống");
 		
-		
 	}
 	
-	//@Test
+	@Test
 	public void TC_02_Kendo_Radio() {
 		
 		driver.get("https://demos.telerik.com/kendo-ui/radiobutton/index");
@@ -102,15 +101,14 @@ public class Homework_Chbk_radio_button {
 		Assert.assertFalse(driver.findElement(Petrol20).isSelected());
 		driver.findElement(Petrol20).click();
 		sleepInSecond(2);
-		Assert.assertTrue(driver.findElement(Petrol20).isSelected());
 		
+		Assert.assertTrue(driver.findElement(Petrol20).isSelected());
 		driver.findElement(Diesel16).click();
 		sleepInSecond(2);
+		
 		Assert.assertFalse(driver.findElement(Petrol20).isSelected());
 		Assert.assertTrue(driver.findElement(Diesel16).isSelected());
-		
 		Assert.assertFalse(driver.findElement(Petrol36).isEnabled());
-		
 		
 	}
 	
@@ -137,7 +135,6 @@ public class Homework_Chbk_radio_button {
 		uncheckToCheckBox(rear);
 		sleepInSecond(2);
 		Assert.assertFalse(driver.findElement(rear).isSelected());
-		
 		Assert.assertFalse(driver.findElement(Towbar).isEnabled());
 		
 		
