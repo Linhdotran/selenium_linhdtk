@@ -1,0 +1,244 @@
+{
+	"info": {
+		"_postman_id": "2197f54a-1590-46b0-ab0e-fe46b5ca5128",
+		"name": "TestCICD",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19338563"
+	},
+	"item": [
+		{
+			"name": "Get List Activities",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Activity 1\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain; v=1.0"
+					}
+				],
+				"url": {
+					"raw": "{{URLfake}}/Activities",
+					"host": [
+						"{{URLfake}}"
+					],
+					"path": [
+						"Activities"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create New Activities",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"TEST ABC\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain; v=1.0"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json; v=1.0"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"id\":0,\r\n\"title\":\"TEST ABC\",\r\n\"dueDate\":\"2022-11-28T03:47:54.067Z\",\r\n\"completed\":true\r\n}"
+				},
+				"url": {
+					"raw": "{{URLfake}}/Activities",
+					"host": [
+						"{{URLfake}}"
+					],
+					"path": [
+						"Activities"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Activities by Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Activity 1\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain; v=1.0"
+					}
+				],
+				"url": {
+					"raw": "{{URLfake}}/Activities/1",
+					"host": [
+						"{{URLfake}}"
+					],
+					"path": [
+						"Activities",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update Activities by Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"string\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain; v=1.0"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json; v=1.0"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"id\":0,\"title\":\"string\",\"dueDate\":\"2022-11-28T03:50:49.708Z\",\"completed\":true}"
+				},
+				"url": {
+					"raw": "{{URLfake}}/Activities/2",
+					"host": [
+						"{{URLfake}}"
+					],
+					"path": [
+						"Activities",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Activities",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					}
+				],
+				"url": {
+					"raw": "{{URLfake}}/Activities/0",
+					"host": [
+						"{{URLfake}}"
+					],
+					"path": [
+						"Activities",
+						"0"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URLfake",
+			"value": "https://fakerestapi.azurewebsites.net/api/v1",
+			"type": "string"
+		}
+	]
+}
