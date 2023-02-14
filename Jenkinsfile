@@ -6,7 +6,7 @@ pipeline {
         POSTMAN_PROJECT = "${REPO}/project"
         DATE_TIME = sh(returnStdout: true, script: 'date +%Y-%m-%d-%H-%M-%S').trim()
         DATE = sh(returnStdout: true, script: 'date +%Y-%m-%d').trim()
-        REPORT_URL = "/var/www/html/test-reports"
+        REPORT_URL = "/var/jenkins_home/workspace/CICDTestAPI/html/test-reports"
         NEWMAN_FOLDER_PATH = "${REPO}/newman"
         TEST_FILE_PATH = "${POSTMAN_PROJECT}/${TEST_FILE}.json"
         SUCCESS_FOLDER = "success"
