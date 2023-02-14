@@ -49,7 +49,7 @@ pipeline {
                         
                         echo "Temporarily generated to ${newmanOutPath}"
                         newman run ${TEST_FILE_PATH} --reporters cli,htmlextra --reporter-htmlextra-export ${newmanOutPath}
-                        sudo chmod 777 ${newmanOutPath}
+                        chmod 777 ${newmanOutPath}
                     """, returnStatus: true) as Integer
                     echo "Got exit code of test file ${rc}.."
 
@@ -59,13 +59,13 @@ pipeline {
                         copiedFolder = SUCCESS_FOLDER
                         sh """
                             mkdir -p ${REPORT_URL}/${params.TEST_FILE}/${SUCCESS_FOLDER}/${DATE}
-                            sudo chmod 777 ${REPORT_URL}/${params.TEST_FILE}/${SUCCESS_FOLDER}/${DATE}
+                            chmod 777 ${REPORT_URL}/${params.TEST_FILE}/${SUCCESS_FOLDER}/${DATE}
                         """
                     } else {
                         copiedFolder = ERROR_FOLDER
                         sh """
                             mkdir -p ${REPORT_URL}/${params.TEST_FILE}/${ERROR_FOLDER}/${DATE}
-                            sudo chmod 777 ${REPORT_URL}/${params.TEST_FILE}/${ERROR_FOLDER}/${DATE}
+                            chmod 777 ${REPORT_URL}/${params.TEST_FILE}/${ERROR_FOLDER}/${DATE}
                         """
                     }
                     def targetPath = "${REPORT_URL}/${params.TEST_FILE}/${copiedFolder}/${DATE}"
