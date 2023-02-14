@@ -8,7 +8,7 @@ pipeline {
         DATE = sh(returnStdout: true, script: 'date +%Y-%m-%d').trim()
         REPORT_URL = "/var/jenkins_home/workspace/CICDTestAPI/html/test-reports"
         NEWMAN_FOLDER_PATH = "${REPO}/newman"
-        TEST_FILE_PATH = "${POSTMAN_PROJECT}/${TEST_FILE}.json"
+        TEST_FILE_PATH = "TestCICD.postman_collection.json"
         SUCCESS_FOLDER = "success"
         ERROR_FOLDER = "error"
     }
@@ -18,22 +18,14 @@ pipeline {
                 sh 'rm -r newman'
             }
         }
-    
-        stage('check newman') {
-            steps {
-                sh 'newman -v'
-            }
-        }
         
-        
-        stage('run report') {
-            steps {
-                sh 'newman run TestCICD.postman_collection.json --insecure --reporters cli,htmlextra'
-        }
-        }
+//         stage('run report') {
+//             steps {
+//                 sh 'newman run TestCICD.postman_collection.json --insecure --reporters cli,htmlextra'
+//         }
+//         }
               stage('Running Newman collections') {
-
-            steps {
+  steps {
 
                 // additional file need additional job. this is how pipeline for
                 // quite difficult to capture newman exit code by just base since "$?" did not work
@@ -49,7 +41,7 @@ pipeline {
                         
                         echo "Temporarily generated to ${newmanOutPath}"
                         newman run ${TEST_FILE_PATH} --reporters cli,htmlextra --reporter-htmlextra-export ${newmanOutPath}
-                        chmod 777 ${newmanOutPath}
+                        sudo chmod 777 ${newmanOutPath}
                     """, returnStatus: true) as Integer
                     echo "Got exit code of test file ${rc}.."
 
@@ -59,18 +51,18 @@ pipeline {
                         copiedFolder = SUCCESS_FOLDER
                         sh """
                             mkdir -p ${REPORT_URL}/${params.TEST_FILE}/${SUCCESS_FOLDER}/${DATE}
-                            chmod 777 ${REPORT_URL}/${params.TEST_FILE}/${SUCCESS_FOLDER}/${DATE}
+                            sudo chmod 777 ${REPORT_URL}/${params.TEST_FILE}/${SUCCESS_FOLDER}/${DATE}
                         """
                     } else {
                         copiedFolder = ERROR_FOLDER
                         sh """
                             mkdir -p ${REPORT_URL}/${params.TEST_FILE}/${ERROR_FOLDER}/${DATE}
-                            chmod 777 ${REPORT_URL}/${params.TEST_FILE}/${ERROR_FOLDER}/${DATE}
+                            sudo chmod 777 ${REPORT_URL}/${params.TEST_FILE}/${ERROR_FOLDER}/${DATE}
                         """
                     }
                     def targetPath = "${REPORT_URL}/${params.TEST_FILE}/${copiedFolder}/${DATE}"
                     echo "Copying ${newmanOutPath} to ${targetPath}"
-                    def cpRc = sh(script: "cp -n ${newmanOutPath} ${targetPath}", returnStatus: true) as Integer
+                    def cpRc = sh(script: "sudo cp -n ${newmanOutPath} ${targetPath}", returnStatus: true) as Integer
                     echo "Copy status ${cpRc} ..." // check if remove files are needed?
 
                     // on second thought, maybe using try-catch is cleaner ^_^
