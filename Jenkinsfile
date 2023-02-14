@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        REPO = "${HOME}/jwt"
+        REPO = "${HOME}/workspace/CICDTestAPI"
         PID_PATH = "${REPO}/pid.nohup"
         POSTMAN_PROJECT = "${REPO}/project"
         DATE_TIME = sh(returnStdout: true, script: 'date +%Y-%m-%d-%H-%M-%S').trim()
