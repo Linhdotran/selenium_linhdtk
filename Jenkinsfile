@@ -11,6 +11,13 @@ pipeline {
         stage('check newman') {
             steps {
                 sh 'newman -v'
+            }
+        }
+        
+        
+        stage('run report') {
+            steps {
+                sh 'newman run TestCICD.postman_collection.json --insecure --reporters cli,htmlextra'
         }
         
         }
