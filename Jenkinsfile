@@ -70,7 +70,7 @@ pipeline {
                     }
                     def targetPath = "${REPORT_URL}/${params.TEST_FILE}/${copiedFolder}/${DATE}"
                     echo "Copying ${newmanOutPath} to ${targetPath}"
-                    def cpRc = sh(script: "sudo cp -n ${newmanOutPath} ${targetPath}", returnStatus: true) as Integer
+                    def cpRc = sh(script: "cp -n ${newmanOutPath} ${targetPath}", returnStatus: true) as Integer
                     echo "Copy status ${cpRc} ..." // check if remove files are needed?
 
                     // on second thought, maybe using try-catch is cleaner ^_^
