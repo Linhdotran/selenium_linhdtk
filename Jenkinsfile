@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     stages {
-        stage('Hello') {
+        stage('Clean newman report') {
             steps {
-                echo 'Hello World'
+                sh 'rm -r newman'
             }
         }
     
